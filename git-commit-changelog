@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# Copyright © 2023 Jakub Wilk <jwilk@jwilk.net>
+# SPDX-License-Identifier: MIT
+
+set -e -u
+
+changelog=
+for path in doc/changelog doc/NEWS
+do
+    if [[ -e $path ]]
+    then
+        changelog=$path
+        break
+    fi
+done
+if [[ -z $changelog ]]
+then
+    printf '%s: changelog not found\n' "${0##*/}" >&2
+    exit 1
+fi
+date=$(dpkg-parsechangelog -S Date -l "$changelog")
+exec git commit --date "$date" "$changelog" -m "$changelog: update." "$@"
+
+# vim:ts=4 sts=4 sw=4 et
