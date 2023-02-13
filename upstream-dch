@@ -3,6 +3,8 @@
 # Copyright © 2011-2023 Jakub Wilk <jwilk@jwilk.net>
 # SPDX-License-Identifier: MIT
 
+set -e -u
+
 args=()
 for file in doc/changelog doc/NEWS
 do
