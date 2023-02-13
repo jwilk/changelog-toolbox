@@ -12,6 +12,11 @@ do
         break
     fi
 done
+if [[ ${#args} -eq 0 ]]
+then
+    printf '%s: changelog not found\n' "${0##*/}" >&2
+    exit 1
+fi
 exec dch "${args[@]}" "$@"
 
 # vim:ts=4 sts=4 sw=4 et
