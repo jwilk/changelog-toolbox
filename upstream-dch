@@ -6,11 +6,11 @@
 set -e -u
 
 args=()
-for file in doc/changelog doc/NEWS
+for path in doc/changelog doc/NEWS
 do
-    if [[ -e $file ]]
+    if [[ -e $path ]]
     then
-        args=(-c "$file")
+        args=(-c "$path")
         break
     fi
 done
